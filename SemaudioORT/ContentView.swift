@@ -26,8 +26,9 @@ struct ContentView: View {
             }) {
                 Text("Compute runtime")
             }
-            Text("Runtime avergaed over \(niter) iterations: \(runtime) ms")
+            Text("Runtime averaged over \(niter) iterations: \(runtime) ms")
         }
+        .buttonStyle(.bordered)
     }
 }
 

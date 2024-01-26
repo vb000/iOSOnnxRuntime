@@ -55,25 +55,46 @@ class Model {
     var runtime = 0.0
 
     for _ in 0..<niter {
-        let x = generateInputData(shape: [1, 2, 480], random: true)
-        let label = generateInputData(shape: [1, 20])
-        let ctx_buf_l = generateInputData(shape: [1, 2, 512, 256], random: true)
-        let ctx_buf_r = generateInputData(shape: [1, 2, 512, 256], random: true)
-        let out_buf_l = generateInputData(shape: [1, 1, 64, 4], random: true)
-        let out_buf_r = generateInputData(shape: [1, 1, 64, 4], random: true)
+        let mixture = generateInputData(shape: [1, 2, 192], random: true)
+        let embedding = generateInputData(shape: [1, 1, 256], random: true)
+        let conv_buf = generateInputData(shape: [1, 4, 2, 97], random: true)
+        let deconv_buf = generateInputData(shape: [1, 64, 2, 97], random: true)
+        let gridnet_bufs_buf0_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+        let gridnet_bufs_buf0_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+        let gridnet_bufs_buf0_c0 = generateInputData(shape: [1, 97, 64], random: true)
+        let gridnet_bufs_buf0_h0 = generateInputData(shape: [1, 97, 64], random: true)
+        let gridnet_bufs_buf1_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+        let gridnet_bufs_buf1_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+        let gridnet_bufs_buf1_c0 = generateInputData(shape: [1, 97, 64], random: true)
+        let gridnet_bufs_buf1_h0 = generateInputData(shape: [1, 97, 64], random: true)
+        let gridnet_bufs_buf2_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+        let gridnet_bufs_buf2_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+        let gridnet_bufs_buf2_c0 = generateInputData(shape: [1, 97, 64], random: true)
+        let gridnet_bufs_buf2_h0 = generateInputData(shape: [1, 97, 64], random: true)
+        let istft_buf = generateInputData(shape: [1, 2, 194, 1], random: true)
 
         // Inference
         let startTime = DispatchTime.now()
         let _ = try! ortSession.run(
-            withInputs: ["x": x,
-                         "init_ctx_buf_l": ctx_buf_l,
-                         "init_ctx_buf_r": ctx_buf_r,
-                         "init_out_buf_l": out_buf_l,
-                         "init_out_buf_r": out_buf_r],
-            outputNames: ["filtered",
-                          "out_buf_l",
-                          "out_buf_r",
-                         ],
+            withInputs: [
+                "mixture": mixture,
+                "embedding": embedding,
+                "conv_buf": conv_buf,
+                "deconv_buf": deconv_buf,
+                "gridnet_bufs::buf0::K_buf": gridnet_bufs_buf0_K_buf,
+                "gridnet_bufs::buf0::V_buf": gridnet_bufs_buf0_V_buf,
+                "gridnet_bufs::buf0::c0": gridnet_bufs_buf0_c0,
+                "gridnet_bufs::buf0::h0": gridnet_bufs_buf0_h0,
+                "gridnet_bufs::buf1::K_buf": gridnet_bufs_buf1_K_buf,
+                "gridnet_bufs::buf1::V_buf": gridnet_bufs_buf1_V_buf,
+                "gridnet_bufs::buf1::c0": gridnet_bufs_buf1_c0,
+                "gridnet_bufs::buf1::h0": gridnet_bufs_buf1_h0,
+                "gridnet_bufs::buf2::K_buf": gridnet_bufs_buf2_K_buf,
+                "gridnet_bufs::buf2::V_buf": gridnet_bufs_buf2_V_buf,
+                "gridnet_bufs::buf2::c0": gridnet_bufs_buf2_c0,
+                "gridnet_bufs::buf2::h0": gridnet_bufs_buf2_h0,
+                "istft_buf": istft_buf],
+            outputNames: ["filtered_output", "out::conv_buf", "out::deconv_buf", "out::gridnet_bufs::buf0::K_buf", "out::gridnet_bufs::buf0::V_buf", "out::gridnet_bufs::buf0::c0", "out::gridnet_bufs::buf0::h0", "out::gridnet_bufs::buf1::K_buf", "out::gridnet_bufs::buf1::V_buf", "out::gridnet_bufs::buf1::c0", "out::gridnet_bufs::buf1::h0", "out::gridnet_bufs::buf2::K_buf", "out::gridnet_bufs::buf2::V_buf", "out::gridnet_bufs::buf2::c0", "out::gridnet_bufs::buf2::h0", "out::istft_buf"],
             runOptions: nil)
         let endTime = DispatchTime.now()
 
