@@ -51,12 +51,14 @@ class Model {
 
   // Function to compute the runtime of the model in milliseconds averaged over
   // `niters`` iterations.
-  func eval(niter: Int) -> Double {
-    var runtime = 0.0
+  func eval(niter: Int) -> [Double] {
+    var runtimes: [Double] = []
 
     for _ in 0..<niter {
+        var runtime = 0.0
+        
         let mixture = generateInputData(shape: [1, 2, 192], random: true)
-        let embedding = generateInputData(shape: [1, 1, 256], random: true)
+        let embedding = generateInputData(shape: [1, 1, 256], random: true) // constant
         let conv_buf = generateInputData(shape: [1, 4, 2, 97], random: true)
         let deconv_buf = generateInputData(shape: [1, 64, 2, 97], random: true)
         let gridnet_bufs_buf0_K_buf = generateInputData(shape: [4, 49, 582], random: true)
@@ -72,6 +74,23 @@ class Model {
         let gridnet_bufs_buf2_c0 = generateInputData(shape: [1, 97, 64], random: true)
         let gridnet_bufs_buf2_h0 = generateInputData(shape: [1, 97, 64], random: true)
         let istft_buf = generateInputData(shape: [1, 2, 194, 1], random: true)
+        
+        /*var filtered_output = shape.[1, 2, 128]
+        var out_conv_buf = [1, 4, 2, 97]
+        var out_deconv_buf = [1, 64, 2, 97]
+        var out_gridnet_bufs_buf0_K_buf = [4, 49, 582]
+        var out_gridnet_bufs_buf0_V_buf = [4, 49, 1552]
+        var out_gridnet_bufs_buf0_c0 = [1, 97, 64]
+        var out_gridnet_bufs_buf0_h0 = [1, 97, 64]
+        var out_gridnet_bufs_buf1_K_buf = [4, 49, 582]
+        var out_gridnet_bufs_buf1_V_buf = [4, 49, 1552]
+        var out_gridnet_bufs_buf1_c0 = [1, 97, 64]
+        var out_gridnet_bufs_buf1_h0 = [1, 97, 64]
+        var out_gridnet_bufs_buf2_K_buf = [4, 49, 582]
+        var out_gridnet_bufs_buf2_V_buf = [4, 49, 1552]
+        var out_gridnet_bufs_buf2_c0 = [1, 97, 64]
+        var out_gridnet_bufs_buf2_h0 = [1, 97, 64]
+        var out_istft_buf = [1, 2, 194, 1]*/
 
         // Inference
         let startTime = DispatchTime.now()
@@ -98,11 +117,11 @@ class Model {
             runOptions: nil)
         let endTime = DispatchTime.now()
 
-        runtime += Double(
-            endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6
+        runtime += Double(endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6
+        runtimes.append(runtime)
     }
 
-    return runtime / Double(niter)
+    return runtimes
   }
 
 }
