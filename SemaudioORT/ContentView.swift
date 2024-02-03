@@ -10,10 +10,19 @@ import SwiftUI
 struct ContentView: View {
     private let model = try! Model()
     @State private var niter = 1
-    @State private var runtime = "--"
+    @State private var summary = "Waiting for input"
+    @State private var runtimes = "--"
+    @State private var average = "--"
+    @State private var std = "--"
+    @State private var computing = false
 
-    private func compute_runtime(_ niter: Int) -> Double {
-        return model.eval(niter: niter)
+    // runs the model and updates state to display results
+    private func compute_runtimes(_ niter: Int) async -> Void {
+        let times: [Double] = model.eval(niter: niter)
+        summary = "For \(niter) iterations:"
+        runtimes = "[" + times.map { String($0) }.joined(separator: ", ") + "]"
+        average = String(times.avg())
+        std = String(times.std())
     }
 
     var body: some View {
@@ -22,17 +31,47 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
             Button(action: {
-                runtime = String(compute_runtime(niter))
+                computing = true
+                summary = "Model Running"
+                Task {
+                    await compute_runtimes(niter)
+                    computing = false
+                }
             }) {
-                Text("Compute runtime")
-            }
-            Text("Runtime avergaed over \(niter) iterations: \(runtime) ms")
+                if (computing) {
+                    Text("Computing")
+                } else {
+                    Text("Compute Runtime")
+                }
+            }.disabled(computing)
+            Text("\(summary)")
+            Text("Average: \(average) ms")
+            Text("STD: \(std) ms")
+            Text("Runtimes: \(runtimes)")
         }
+        .buttonStyle(.bordered)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+// helpers for calculating mean and std
+extension Array where Element: FloatingPoint {
+    func sum() -> Element {
+        return self.reduce(0, +)
+    }
+
+    func avg() -> Element {
+        return self.sum() / Element(self.count)
+    }
+
+    func std() -> Element {
+        let mean = self.avg()
+        let v = self.reduce(0, { $0 + ($1-mean)*($1-mean) })
+        return sqrt(v / (Element(self.count) - 1))
     }
 }
