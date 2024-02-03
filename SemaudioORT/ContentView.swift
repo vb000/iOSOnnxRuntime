@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var niter = 1
     @State private var runtime = "--"
 
-    private func compute_runtime(_ niter: Int) -> Double {
+    private func compute_runtime(_ niter: Int) async -> Double {
         return model.eval(niter: niter)
     }
 
@@ -22,7 +22,14 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
             Button(action: {
-                runtime = String(compute_runtime(niter))
+                // Using Task to perform asynchronous operation
+                Task {
+                    let result = await compute_runtime(niter)
+                    // Update the UI on the main thread
+                    DispatchQueue.main.async {
+                        runtime = String(result)
+                    }
+                }
             }) {
                 Text("Compute runtime")
             }
