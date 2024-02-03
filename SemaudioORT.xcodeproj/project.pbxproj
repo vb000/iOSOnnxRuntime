@@ -1,16 +1,3 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 56;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		08C74C8A29C2B1000048C87B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74C8929C2B1000048C87B /* ContentView.swift */; };
-		08C74C8C29C2B1030048C87B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08C74C8B29C2B1030048C87B /* Assets.xcassets */; };
-		08C74C8F29C2B1030048C87B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08C74C8E29C2B1030048C87B /* Preview Assets.xcassets */; };
-		08C74C9929C2B1030048C87B /* SemaudioORTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74C9829C2B1030048C87B /* SemaudioORTTests.swift */; };
 		08C74CA329C2B1030048C87B /* SemaudioORTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CA229C2B1030048C87B /* SemaudioORTUITests.swift */; };
 		08C74CA529C2B1030048C87B /* SemaudioORTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CA429C2B1030048C87B /* SemaudioORTUITestsLaunchTests.swift */; };
 		08C74CB629C2B2700048C87B /* SemaudioORTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CB529C2B2700048C87B /* SemaudioORTApp.swift */; };
@@ -544,21 +531,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SemaudioORT/Preview Content\"";
-				DEVELOPMENT_TEAM = 9BN669479Y;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.TS-hear.eyoel-enroll";
+                    DEVELOPMENT_TEAM = 9BN669479Y;
+                    ENABLE_PREVIEWS = YES;
+                    GENERATE_INFOPLIST_FILE = YES;
+                    INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+                    INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+                    INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+                    INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+                    INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+                    IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+                    LD_RUNPATH_SEARCH_PATHS = (
+                        "$(inherited)",
+                        "@executable_path/Frameworks",
+                    );
+                    MARKETING_VERSION = 1.0;
+                    PRODUCT_BUNDLE_IDENTIFIER = "com.TS-hear.eyoel-enroll";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

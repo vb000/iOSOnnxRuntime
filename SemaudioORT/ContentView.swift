@@ -10,7 +10,11 @@ import SwiftUI
 struct ContentView: View {
     private let model = try! Model()
     @State private var niter = 1
-    @State private var runtime = "--"
+    @State private var summary = "Waiting for input"
+    @State private var runtimes = "--"
+    @State private var average = "--"
+    @State private var std = "--"
+    @State private var computing = false
 
     private func compute_runtime(_ niter: Int) async -> Double {
         return model.eval(niter: niter)
@@ -42,5 +46,22 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+// helpers for calculating mean and std
+extension Array where Element: FloatingPoint {
+    func sum() -> Element {
+        return self.reduce(0, +)
+    }
+
+    func avg() -> Element {
+        return self.sum() / Element(self.count)
+    }
+
+    func std() -> Element {
+        let mean = self.avg()
+        let v = self.reduce(0, { $0 + ($1-mean)*($1-mean) })
+        return sqrt(v / (Element(self.count) - 1))
     }
 }
