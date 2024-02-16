@@ -16,8 +16,13 @@ struct ContentView: View {
     @State private var std = "--"
     @State private var computing = false
 
-    private func compute_runtime(_ niter: Int) async -> Double {
-        return model.eval(niter: niter)
+    // runs the model and updates state to display results
+    private func compute_runtimes(_ niter: Int) async -> Void {
+        let times: [Double] = model.eval(niter: niter)
+        summary = "For \(niter) iterations:"
+        runtimes = "[" + times.map { String($0) }.joined(separator: ", ") + "]"
+        average = String(times.avg())
+        std = String(times.std())
     }
 
     var body: some View {
@@ -26,18 +31,23 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
             Button(action: {
-                // Using Task to perform asynchronous operation
+                computing = true
+                summary = "Model Running"
                 Task {
-                    let result = await compute_runtime(niter)
-                    // Update the UI on the main thread
-                    DispatchQueue.main.async {
-                        runtime = String(result)
-                    }
+                    await compute_runtimes(niter)
+                    computing = false
                 }
             }) {
-                Text("Compute runtime")
-            }
-            Text("Runtime averaged over \(niter) iterations: \(runtime) ms")
+                if (computing) {
+                    Text("Computing")
+                } else {
+                    Text("Compute Runtime")
+                }
+            }.disabled(computing)
+            Text("\(summary)")
+            Text("Average: \(average) ms")
+            Text("STD: \(std) ms")
+            Text("Runtimes: \(runtimes)")
         }
         .buttonStyle(.bordered)
     }

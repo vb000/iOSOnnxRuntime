@@ -1,5 +1,0 @@
-SemaudioORT.*
-.DS_Store
-Pods/
-Podfile.lock
-model.ort
