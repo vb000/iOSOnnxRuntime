@@ -1,1 +1,3 @@
-Podfile
+*.json
+Pods/
+Podfile.lock

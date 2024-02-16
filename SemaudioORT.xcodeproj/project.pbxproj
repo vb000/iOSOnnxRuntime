@@ -15,10 +15,10 @@
 		08C74CA529C2B1030048C87B /* SemaudioORTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CA429C2B1030048C87B /* SemaudioORTUITestsLaunchTests.swift */; };
 		08C74CB629C2B2700048C87B /* SemaudioORTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CB529C2B2700048C87B /* SemaudioORTApp.swift */; };
 		08C74CB829C2B2950048C87B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CB729C2B2950048C87B /* ContentView.swift */; };
-		08C74CBA29C2B2A20048C87B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CB929C2B2A10048C87B /* Model.swift */; };
-		08C74CBD29C2DE310048C87B /* model.ort in Resources */ = {isa = PBXBuildFile; fileRef = 08C74CBC29C2DE310048C87B /* model.ort */; };
+		08C74CBA29C2B2A20048C87B /* EnrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C74CB929C2B2A10048C87B /* EnrollModel.swift */; };
 		282097A56C10AA39AFA0A4BB /* Pods_SemaudioORT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C44ECFE66E4A55204C10F03 /* Pods_SemaudioORT.framework */; };
 		77EDD32BA0C259BD91682C9D /* Pods_SemaudioORTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66DB75445446BA902435FFC /* Pods_SemaudioORTTests.framework */; };
+		8D93D6F92B7FEE2D006356F3 /* enroll.ort in Resources */ = {isa = PBXBuildFile; fileRef = 8D93D6F82B7FEE2D006356F3 /* enroll.ort */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,13 +50,15 @@
 		08C74CA429C2B1030048C87B /* SemaudioORTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaudioORTUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		08C74CB529C2B2700048C87B /* SemaudioORTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaudioORTApp.swift; sourceTree = "<group>"; };
 		08C74CB729C2B2950048C87B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		08C74CB929C2B2A10048C87B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		08C74CB929C2B2A10048C87B /* EnrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollModel.swift; sourceTree = "<group>"; };
 		08C74CBB29C2B3100048C87B /* Model-Bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Model-Bridging-header.h"; sourceTree = "<group>"; };
 		08C74CBC29C2DE310048C87B /* model.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.ort; sourceTree = SOURCE_ROOT; };
 		0C44ECFE66E4A55204C10F03 /* Pods_SemaudioORT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SemaudioORT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F633C62A5AE0CFD43C4870C /* Pods-SemaudioORTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORTTests.release.xcconfig"; path = "Target Support Files/Pods-SemaudioORTTests/Pods-SemaudioORTTests.release.xcconfig"; sourceTree = "<group>"; };
 		6FF65F1BEB945006AF8B8C74 /* Pods-SemaudioORT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORT.release.xcconfig"; path = "Target Support Files/Pods-SemaudioORT/Pods-SemaudioORT.release.xcconfig"; sourceTree = "<group>"; };
 		8125335B87F4F554DD49DFE2 /* Pods-SemaudioORTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORTTests.debug.xcconfig"; path = "Target Support Files/Pods-SemaudioORTTests/Pods-SemaudioORTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D07D8032B643133008385B6 /* enroll.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = enroll.ort; sourceTree = SOURCE_ROOT; };
+		8D93D6F82B7FEE2D006356F3 /* enroll.ort */ = {isa = PBXFileReference; lastKnownFileType = file; name = enroll.ort; path = ../extra/ort_creation_dir/enroll.ort; sourceTree = "<group>"; };
 		E66DB75445446BA902435FFC /* Pods_SemaudioORTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SemaudioORTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F569894141087F88A3BC1290 /* Pods-SemaudioORT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORT.debug.xcconfig"; path = "Target Support Files/Pods-SemaudioORT/Pods-SemaudioORT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 		08C74C7B29C2B1000048C87B = {
 			isa = PBXGroup;
 			children = (
+				8D93D6F82B7FEE2D006356F3 /* enroll.ort */,
 				08C74C8629C2B1000048C87B /* SemaudioORT */,
 				08C74C9729C2B1030048C87B /* SemaudioORTTests */,
 				08C74CA129C2B1030048C87B /* SemaudioORTUITests */,
@@ -114,8 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				08C74CBC29C2DE310048C87B /* model.ort */,
+				8D07D8032B643133008385B6 /* enroll.ort */,
 				08C74CB729C2B2950048C87B /* ContentView.swift */,
-				08C74CB929C2B2A10048C87B /* Model.swift */,
+				08C74CB929C2B2A10048C87B /* EnrollModel.swift */,
 				08C74CBB29C2B3100048C87B /* Model-Bridging-header.h */,
 				08C74CB529C2B2700048C87B /* SemaudioORTApp.swift */,
 				08C74C8929C2B1000048C87B /* ContentView.swift */,
@@ -277,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C74C8F29C2B1030048C87B /* Preview Assets.xcassets in Resources */,
-				08C74CBD29C2DE310048C87B /* model.ort in Resources */,
+				8D93D6F92B7FEE2D006356F3 /* enroll.ort in Resources */,
 				08C74C8C29C2B1030048C87B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +357,7 @@
 				08C74C8A29C2B1000048C87B /* ContentView.swift in Sources */,
 				08C74CB629C2B2700048C87B /* SemaudioORTApp.swift in Sources */,
 				08C74CB829C2B2950048C87B /* ContentView.swift in Sources */,
-				08C74CBA29C2B2A20048C87B /* Model.swift in Sources */,
+				08C74CBA29C2B2A20048C87B /* EnrollModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SemaudioORT/Preview Content\"";
-				DEVELOPMENT_TEAM = 62KFB53NJJ;
+				DEVELOPMENT_TEAM = 9BN669479Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -527,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vb000.SemaudioORT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vb000.SemaudioORT-eyoel-testing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -544,7 +548,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SemaudioORT/Preview Content\"";
-				DEVELOPMENT_TEAM = 62KFB53NJJ;
+				DEVELOPMENT_TEAM = 9BN669479Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -558,7 +562,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vb000.SemaudioORT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vb000.SemaudioORT-eyoel-testing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

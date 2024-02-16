@@ -8,31 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let model = try! Model()
-    @State private var niter = 1
-    @State private var runtime = "--"
-
-    private func compute_runtime(_ niter: Int) -> Double {
-        return model.eval(niter: niter)
-    }
-
+    private let model = try! EnrollModel()
+    
     var body: some View {
         VStack {
-            TextField("Enter a positive integer", value: $niter, formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            Text("TSH enroll function")
             Button(action: {
-                runtime = String(compute_runtime(niter))
+                Task {
+                    model.eval()
+                }
             }) {
-                Text("Compute runtime")
+                Text("runEnroll")
             }
-            Text("Runtime avergaed over \(niter) iterations: \(runtime) ms")
         }
+        .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
+
