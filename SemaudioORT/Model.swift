@@ -48,6 +48,56 @@ class Model {
     
       return input
   }
+  
+  func runModel(inputs: Dictionary<String, ORTValue>) -> Dictionary<String, ORTValue> {
+    let outputs = try! ortSession.run(
+        withInputs: inputs,
+        outputNames: ["filtered_output", "out::conv_buf", "out::deconv_buf", "out::gridnet_bufs::buf0::K_buf", "out::gridnet_bufs::buf0::V_buf", "out::gridnet_bufs::buf0::c0", "out::gridnet_bufs::buf0::h0", "out::gridnet_bufs::buf1::K_buf", "out::gridnet_bufs::buf1::V_buf", "out::gridnet_bufs::buf1::c0", "out::gridnet_bufs::buf1::h0", "out::gridnet_bufs::buf2::K_buf", "out::gridnet_bufs::buf2::V_buf", "out::gridnet_bufs::buf2::c0", "out::gridnet_bufs::buf2::h0", "out::istft_buf"],
+        runOptions: nil)
+    return outputs
+  }
+  
+  func getInputs() -> Dictionary<String, ORTValue> {
+    let mixture = generateInputData(shape: [1, 2, 192], random: true)
+    let embedding = generateInputData(shape: [1, 1, 256], random: true) // constant
+    let conv_buf = generateInputData(shape: [1, 4, 2, 97], random: true)
+    let deconv_buf = generateInputData(shape: [1, 64, 2, 97], random: true)
+    let gridnet_bufs_buf0_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+    let gridnet_bufs_buf0_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+    let gridnet_bufs_buf0_c0 = generateInputData(shape: [1, 97, 64], random: true)
+    let gridnet_bufs_buf0_h0 = generateInputData(shape: [1, 97, 64], random: true)
+    let gridnet_bufs_buf1_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+    let gridnet_bufs_buf1_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+    let gridnet_bufs_buf1_c0 = generateInputData(shape: [1, 97, 64], random: true)
+    let gridnet_bufs_buf1_h0 = generateInputData(shape: [1, 97, 64], random: true)
+    let gridnet_bufs_buf2_K_buf = generateInputData(shape: [4, 49, 582], random: true)
+    let gridnet_bufs_buf2_V_buf = generateInputData(shape: [4, 49, 1552], random: true)
+    let gridnet_bufs_buf2_c0 = generateInputData(shape: [1, 97, 64], random: true)
+    let gridnet_bufs_buf2_h0 = generateInputData(shape: [1, 97, 64], random: true)
+    let istft_buf = generateInputData(shape: [1, 2, 194, 1], random: true)
+    
+    let inputs = [
+      "mixture": mixture,
+      "embedding": embedding,
+      "conv_buf": conv_buf,
+      "deconv_buf": deconv_buf,
+      "gridnet_bufs::buf0::K_buf": gridnet_bufs_buf0_K_buf,
+      "gridnet_bufs::buf0::V_buf": gridnet_bufs_buf0_V_buf,
+      "gridnet_bufs::buf0::c0": gridnet_bufs_buf0_c0,
+      "gridnet_bufs::buf0::h0": gridnet_bufs_buf0_h0,
+      "gridnet_bufs::buf1::K_buf": gridnet_bufs_buf1_K_buf,
+      "gridnet_bufs::buf1::V_buf": gridnet_bufs_buf1_V_buf,
+      "gridnet_bufs::buf1::c0": gridnet_bufs_buf1_c0,
+      "gridnet_bufs::buf1::h0": gridnet_bufs_buf1_h0,
+      "gridnet_bufs::buf2::K_buf": gridnet_bufs_buf2_K_buf,
+      "gridnet_bufs::buf2::V_buf": gridnet_bufs_buf2_V_buf,
+      "gridnet_bufs::buf2::c0": gridnet_bufs_buf2_c0,
+      "gridnet_bufs::buf2::h0": gridnet_bufs_buf2_h0,
+      "istft_buf": istft_buf]
+    
+    return inputs
+  }
+
 
   // Function to compute the runtime of the model in milliseconds averaged over
   // `niters`` iterations.

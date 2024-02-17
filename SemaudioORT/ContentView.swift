@@ -8,22 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let model = try! Model()
-    @State private var niter = 1
-    @State private var summary = "Waiting for input"
-    @State private var runtimes = "--"
-    @State private var average = "--"
-    @State private var std = "--"
-    @State private var computing = false
+  private let model = try! Model()
+  @State private var niter = 1
+  @State private var summary = "Waiting for input"
+  @State private var runtimes = "--"
+  @State private var average = "--"
+  @State private var std = "--"
+  @State private var computing = false
 
-    // runs the model and updates state to display results
-    private func compute_runtimes(_ niter: Int) async -> Void {
-        let times: [Double] = model.eval(niter: niter)
-        summary = "For \(niter) iterations:"
-        runtimes = "[" + times.map { String($0) }.joined(separator: ", ") + "]"
-        average = String(times.avg())
-        std = String(times.std())
-    }
+  // runs the model and updates state to display results
+  private func compute_runtimes(_ niter: Int) async -> Void {
+      let times: [Double] = model.eval(niter: niter)
+      summary = "For \(niter) iterations:"
+      runtimes = "[" + times.map { String($0) }.joined(separator: ", ") + "]"
+      average = String(times.avg())
+      std = String(times.std())
+      print(runtimes)
+  }
+  
+  private func test_method() async -> Void {
+    let inputs = model.getInputs()
+    let outputs = model.runModel(inputs: inputs)
+    print(outputs)
+  }
 
     var body: some View {
         VStack {
@@ -48,6 +55,20 @@ struct ContentView: View {
             Text("Average: \(average) ms")
             Text("STD: \(std) ms")
             Text("Runtimes: \(runtimes)")
+            Button(action: {
+                computing = true
+                summary = "Model Testing"
+                Task {
+                    await test_method()
+                    computing = false
+                }
+            }) {
+                if (computing) {
+                    Text("Testing")
+                } else {
+                    Text("Test")
+                }
+            }.disabled(computing)
         }
         .buttonStyle(.bordered)
     }
