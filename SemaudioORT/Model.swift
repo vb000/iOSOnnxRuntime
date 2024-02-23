@@ -25,6 +25,11 @@ class Model {
     buffers = initializeInputs()
   }
   
+  // Sets enrollment to the enrollment passed in
+  func set_embed(embed: ORTValue) -> Void {
+    buffers["embedding"] = embed
+  }
+  
   // the important method
   // returns the filtered output [1, 2, 128] when the current buffers are run through the model, and updates the buffers accordingly
   func infer(mixture: ORTValue) -> ORTValue {
@@ -51,7 +56,29 @@ class Model {
       return generateORTValue(shape: [1, 2, 128], random: false)
     }
   }
+  
+  func get_avg_runtimes(niter: Int) -> Double {
+    var mixtures: [ORTValue] = []
+    
+    for _ in 0..<niter {
+      mixtures.append(generateORTValue(shape: [1, 2, 192], random: true))
+    }
+    
+    let startTime = DispatchTime.now()
+    
+    
+    for mixture in mixtures{
+      let _ = infer(mixture: mixture)
+    }
+    
+    let endTime = DispatchTime.now()
+    return (Double(endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6) / Double(niter)
+  }
 
+  static func generateFakeInput() -> ORTValue {
+   return generateORTValue(shape: [1, 2, 192], random: true)
+  }
+  
 }
 
 // STATIC HELPER FUNCTIONS
