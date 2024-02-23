@@ -48,8 +48,19 @@ class Model {
     if let output = outputs["filtered_output"] {
       return output
     } else {
+      print("filtered_output didn't unpack properly")
       return generateORTValue(shape: [1, 2, 128], random: false)
     }
+  }
+  
+  // set the model's embedding vector
+  func setEmbedding(embedding: ORTValue) -> Void {
+    buffers["embedding"] = embedding
+  }
+  
+  // reset the model's state to 0s
+  func resetState() -> Void {
+    buffers = initializeInputs()
   }
 
 }
@@ -123,4 +134,14 @@ func generateORTValue(shape: [Int], random: Bool = false) -> ORTValue {
     shape: inputShape)
 
   return input
+}
+
+// thanks Eyoel
+func ORTValueToArray(input: ORTValue) -> [Float] {
+  let tensorData = try! input.tensorData() as Data
+  let floatArray = tensorData.withUnsafeBytes { buffer -> [Float] in
+    let floatBuffer = buffer.bindMemory(to: Float.self)
+    return Array(floatBuffer)
+  }
+  return floatArray
 }
