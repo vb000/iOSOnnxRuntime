@@ -19,6 +19,8 @@
 		08C74CBD29C2DE310048C87B /* model.ort in Resources */ = {isa = PBXBuildFile; fileRef = 08C74CBC29C2DE310048C87B /* model.ort */; };
 		282097A56C10AA39AFA0A4BB /* Pods_SemaudioORT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C44ECFE66E4A55204C10F03 /* Pods_SemaudioORT.framework */; };
 		77EDD32BA0C259BD91682C9D /* Pods_SemaudioORTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66DB75445446BA902435FFC /* Pods_SemaudioORTTests.framework */; };
+		FE0819542B8D4D0600DD20E8 /* enroll.ort in Resources */ = {isa = PBXBuildFile; fileRef = FE0819532B8D4D0600DD20E8 /* enroll.ort */; };
+		FEC6152E2B895C8100E5EDE6 /* EnrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6152D2B895C8100E5EDE6 /* EnrollModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		8125335B87F4F554DD49DFE2 /* Pods-SemaudioORTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORTTests.debug.xcconfig"; path = "Target Support Files/Pods-SemaudioORTTests/Pods-SemaudioORTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E66DB75445446BA902435FFC /* Pods_SemaudioORTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SemaudioORTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F569894141087F88A3BC1290 /* Pods-SemaudioORT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SemaudioORT.debug.xcconfig"; path = "Target Support Files/Pods-SemaudioORT/Pods-SemaudioORT.debug.xcconfig"; sourceTree = "<group>"; };
+		FE0819532B8D4D0600DD20E8 /* enroll.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = enroll.ort; sourceTree = "<group>"; };
+		FEC6152D2B895C8100E5EDE6 /* EnrollModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +117,11 @@
 		08C74C8629C2B1000048C87B /* SemaudioORT */ = {
 			isa = PBXGroup;
 			children = (
+				FE0819532B8D4D0600DD20E8 /* enroll.ort */,
 				08C74CBC29C2DE310048C87B /* model.ort */,
 				08C74CB729C2B2950048C87B /* ContentView.swift */,
 				08C74CB929C2B2A10048C87B /* Model.swift */,
+				FEC6152D2B895C8100E5EDE6 /* EnrollModel.swift */,
 				08C74CBB29C2B3100048C87B /* Model-Bridging-header.h */,
 				08C74CB529C2B2700048C87B /* SemaudioORTApp.swift */,
 				08C74C8929C2B1000048C87B /* ContentView.swift */,
@@ -277,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C74C8F29C2B1030048C87B /* Preview Assets.xcassets in Resources */,
+				FE0819542B8D4D0600DD20E8 /* enroll.ort in Resources */,
 				08C74CBD29C2DE310048C87B /* model.ort in Resources */,
 				08C74C8C29C2B1030048C87B /* Assets.xcassets in Resources */,
 			);
@@ -350,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEC6152E2B895C8100E5EDE6 /* EnrollModel.swift in Sources */,
 				08C74C8A29C2B1000048C87B /* ContentView.swift in Sources */,
 				08C74CB629C2B2700048C87B /* SemaudioORTApp.swift in Sources */,
 				08C74CB829C2B2950048C87B /* ContentView.swift in Sources */,

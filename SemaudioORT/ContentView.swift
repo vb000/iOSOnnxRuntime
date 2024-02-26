@@ -10,6 +10,7 @@ import onnxruntime_objc
 
 struct ContentView: View {
   private let model = try! Model()
+  private let enrollment = try! EnrollModel()
   @State private var model_running = false
   @State private var average = "__"
   @State private var niter = 1
@@ -18,11 +19,13 @@ struct ContentView: View {
 
   private func run_tsh(){
     model_running = !model_running
+    // maybe make two threads here one listening building audio input buffer and and a second
+    // running all audio samples in input buffer through the TSH model and output it to an output buffer
     DispatchQueue.global(qos: .background).async {
       while (model_running) {
         // When other team is done somehow make the input await for the 8ms mixture of real data then proceed
         let input = Model.generateFakeInput()
-        let output = model.infer(mixture: input)
+        let output = model.infer(mixture: input) // Maybe this should also be another thread where
         out = out + 1
         //Here somehow output this sound
       }
@@ -34,11 +37,13 @@ struct ContentView: View {
     if (!enrolling) {
       enrolling = true
       DispatchQueue.global(qos: .background).async {
-        do {
+        do { // Collecting the sample of audio
           sleep(4)
         }
-        let enrollment = ""
-  //      model.set_embed(embed: enrollment)
+        let enrollInArray = enrollment.generateArray(size: 2 * 80000)
+        let enrollIn = enrollment.ArrayToORTVal(inputData: enrollInArray, shape: [1, 2, 80000])
+        let enrolloutArray = enrollment.runEnroll(inputORT: enrollIn)
+        model.set_embed(embed: enrollment.ArrayToORTVal(inputData: enrolloutArray, shape: [1, 1, 256]))
         enrolling = false
       }
     }
